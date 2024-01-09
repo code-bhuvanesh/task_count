@@ -1,0 +1,157 @@
+Date : 2024-01-05 20:01:19
+Directory : d:\Projects\my_projects\Flutter_projects\task_count
+Total : 64 files,  2591 codes, 257 comments, 404 blanks, all 3252 lines
+
+Languages
++-----------------+------------+------------+------------+------------+------------+
+| language        | files      | code       | comment    | blank      | total      |
++-----------------+------------+------------+------------+------------+------------+
+| Dart            |         15 |      1,072 |         27 |        120 |      1,219 |
+| C++             |         16 |        531 |        121 |        182 |        834 |
+| XML             |         10 |        463 |         48 |         12 |        523 |
+| JSON            |          4 |        248 |          0 |          4 |        252 |
+| Gradle          |          3 |        101 |          5 |         23 |        129 |
+| Swift           |          6 |         52 |          7 |         20 |         79 |
+| HTML            |          1 |         38 |         16 |          6 |         60 |
+| CMake           |          2 |         36 |          0 |         12 |         48 |
+| YAML            |          2 |         25 |         33 |         11 |         69 |
+| Markdown        |          2 |         13 |          0 |          9 |         22 |
+| Java Properties |          2 |          8 |          0 |          2 |         10 |
+| Kotlin          |          1 |          4 |          0 |          3 |          7 |
++-----------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                   | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                      |         64 |      2,591 |        257 |        404 |      3,252 |
+| . (Files)                                                                                                              |          3 |         35 |         33 |         18 |         86 |
+| android                                                                                                                |         13 |        172 |         51 |         37 |        260 |
+| android (Files)                                                                                                        |          3 |         53 |          0 |         12 |         65 |
+| android\app                                                                                                            |          9 |        114 |         51 |         24 |        189 |
+| android\app (Files)                                                                                                    |          1 |         51 |          5 |         12 |         68 |
+| android\app\src                                                                                                        |          8 |         63 |         46 |         12 |        121 |
+| android\app\src\debug                                                                                                  |          1 |          3 |          4 |          1 |          8 |
+| android\app\src\main                                                                                                   |          6 |         57 |         38 |         10 |        105 |
+| android\app\src\main (Files)                                                                                           |          1 |         27 |          6 |          1 |         34 |
+| android\app\src\main\kotlin                                                                                            |          1 |          4 |          0 |          3 |          7 |
+| android\app\src\main\kotlin\com                                                                                        |          1 |          4 |          0 |          3 |          7 |
+| android\app\src\main\kotlin\com\example                                                                                |          1 |          4 |          0 |          3 |          7 |
+| android\app\src\main\kotlin\com\example\task_count                                                                     |          1 |          4 |          0 |          3 |          7 |
+| android\app\src\main\res                                                                                               |          4 |         26 |         32 |          6 |         64 |
+| android\app\src\main\res\drawable                                                                                      |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\drawable-v21                                                                                  |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\values                                                                                        |          1 |          9 |          9 |          1 |         19 |
+| android\app\src\main\res\values-night                                                                                  |          1 |          9 |          9 |          1 |         19 |
+| android\app\src\profile                                                                                                |          1 |          3 |          4 |          1 |          8 |
+| android\gradle                                                                                                         |          1 |          5 |          0 |          1 |          6 |
+| android\gradle\wrapper                                                                                                 |          1 |          5 |          0 |          1 |          6 |
+| ios                                                                                                                    |          8 |        229 |          4 |         13 |        246 |
+| ios\Runner                                                                                                             |          7 |        222 |          2 |          9 |        233 |
+| ios\Runner (Files)                                                                                                     |          2 |         13 |          0 |          3 |         16 |
+| ios\RunnerTests                                                                                                        |          1 |          7 |          2 |          4 |         13 |
+| ios\Runner\Assets.xcassets                                                                                             |          3 |        148 |          0 |          4 |        152 |
+| ios\Runner\Assets.xcassets\AppIcon.appiconset                                                                          |          1 |        122 |          0 |          1 |        123 |
+| ios\Runner\Assets.xcassets\LaunchImage.imageset                                                                        |          2 |         26 |          0 |          3 |         29 |
+| ios\Runner\Base.lproj                                                                                                  |          2 |         61 |          2 |          2 |         65 |
+| lib                                                                                                                    |         14 |      1,058 |         17 |        113 |      1,188 |
+| lib (Files)                                                                                                            |          1 |         21 |          1 |          4 |         26 |
+| lib\data                                                                                                               |          3 |        119 |          2 |         21 |        142 |
+| lib\data\models                                                                                                        |          2 |         23 |          0 |          8 |         31 |
+| lib\data\repository                                                                                                    |          1 |         96 |          2 |         13 |        111 |
+| lib\features                                                                                                           |          8 |        860 |         12 |         83 |        955 |
+| lib\features\calender_page                                                                                             |          5 |        774 |         12 |         69 |        855 |
+| lib\features\calender_page (Files)                                                                                     |          2 |        614 |         12 |         29 |        655 |
+| lib\features\calender_page\bloc                                                                                        |          3 |        160 |          0 |         40 |        200 |
+| lib\features\main_page                                                                                                 |          1 |         50 |          0 |          7 |         57 |
+| lib\features\settings_page                                                                                             |          1 |         18 |          0 |          3 |         21 |
+| lib\features\statistics_page                                                                                           |          1 |         18 |          0 |          4 |         22 |
+| lib\utils                                                                                                              |          2 |         58 |          2 |          5 |         65 |
+| linux                                                                                                                  |          6 |        112 |         27 |         44 |        183 |
+| linux (Files)                                                                                                          |          3 |         86 |         18 |         27 |        131 |
+| linux\flutter                                                                                                          |          3 |         26 |          9 |         17 |         52 |
+| macos                                                                                                                  |          6 |        444 |          5 |         16 |        465 |
+| macos\Flutter                                                                                                          |          1 |          6 |          3 |          4 |         13 |
+| macos\Runner                                                                                                           |          4 |        431 |          0 |          8 |        439 |
+| macos\Runner (Files)                                                                                                   |          2 |         20 |          0 |          6 |         26 |
+| macos\RunnerTests                                                                                                      |          1 |          7 |          2 |          4 |         13 |
+| macos\Runner\Assets.xcassets                                                                                           |          1 |         68 |          0 |          1 |         69 |
+| macos\Runner\Assets.xcassets\AppIcon.appiconset                                                                        |          1 |         68 |          0 |          1 |         69 |
+| macos\Runner\Base.lproj                                                                                                |          1 |        343 |          0 |          1 |        344 |
+| test                                                                                                                   |          1 |         14 |         10 |          7 |         31 |
+| web                                                                                                                    |          2 |         73 |         16 |          7 |         96 |
+| windows                                                                                                                |         11 |        454 |         94 |        149 |        697 |
+| windows\flutter                                                                                                        |          3 |         26 |          9 |         17 |         52 |
+| windows\runner                                                                                                         |          8 |        428 |         85 |        132 |        645 |
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| filename                                                                                                               | language        | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| d:\Projects\my_projects\Flutter_projects\task_count\README.md                                                          | Markdown        |         10 |          0 |          7 |         17 |
+| d:\Projects\my_projects\Flutter_projects\task_count\analysis_options.yaml                                              | YAML            |          3 |         22 |          4 |         29 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\app\build.gradle                                           | Gradle          |         51 |          5 |         12 |         68 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\app\src\debug\AndroidManifest.xml                          | XML             |          3 |          4 |          1 |          8 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\app\src\main\AndroidManifest.xml                           | XML             |         27 |          6 |          1 |         34 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\app\src\main\kotlin\com\example\task_count\MainActivity.kt | Kotlin          |          4 |          0 |          3 |          7 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\app\src\main\res\drawable-v21\launch_background.xml        | XML             |          4 |          7 |          2 |         13 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\app\src\main\res\drawable\launch_background.xml            | XML             |          4 |          7 |          2 |         13 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\app\src\main\res\values-night\styles.xml                   | XML             |          9 |          9 |          1 |         19 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\app\src\main\res\values\styles.xml                         | XML             |          9 |          9 |          1 |         19 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\app\src\profile\AndroidManifest.xml                        | XML             |          3 |          4 |          1 |          8 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\build.gradle                                               | Gradle          |         26 |          0 |          5 |         31 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\gradle.properties                                          | Java Properties |          3 |          0 |          1 |          4 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\gradle\wrapper\gradle-wrapper.properties                   | Java Properties |          5 |          0 |          1 |          6 |
+| d:\Projects\my_projects\Flutter_projects\task_count\android\settings.gradle                                            | Gradle          |         24 |          0 |          6 |         30 |
+| d:\Projects\my_projects\Flutter_projects\task_count\ios\RunnerTests\RunnerTests.swift                                  | Swift           |          7 |          2 |          4 |         13 |
+| d:\Projects\my_projects\Flutter_projects\task_count\ios\Runner\AppDelegate.swift                                       | Swift           |         12 |          0 |          2 |         14 |
+| d:\Projects\my_projects\Flutter_projects\task_count\ios\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json        | JSON            |        122 |          0 |          1 |        123 |
+| d:\Projects\my_projects\Flutter_projects\task_count\ios\Runner\Assets.xcassets\LaunchImage.imageset\Contents.json      | JSON            |         23 |          0 |          1 |         24 |
+| d:\Projects\my_projects\Flutter_projects\task_count\ios\Runner\Assets.xcassets\LaunchImage.imageset\README.md          | Markdown        |          3 |          0 |          2 |          5 |
+| d:\Projects\my_projects\Flutter_projects\task_count\ios\Runner\Base.lproj\LaunchScreen.storyboard                      | XML             |         36 |          1 |          1 |         38 |
+| d:\Projects\my_projects\Flutter_projects\task_count\ios\Runner\Base.lproj\Main.storyboard                              | XML             |         25 |          1 |          1 |         27 |
+| d:\Projects\my_projects\Flutter_projects\task_count\ios\Runner\Runner-Bridging-Header.h                                | C++             |          1 |          0 |          1 |          2 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\data\models\custom_date.dart                                   | Dart            |         13 |          0 |          6 |         19 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\data\models\task.dart                                          | Dart            |         10 |          0 |          2 |         12 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\data\repository\task_repo.dart                                 | Dart            |         96 |          2 |         13 |        111 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\features\calender_page\add_task_bottom_sheet.dart              | Dart            |        315 |          2 |         12 |        329 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\features\calender_page\bloc\calender_bloc.dart                 | Dart            |         84 |          0 |         11 |         95 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\features\calender_page\bloc\calender_event.dart                | Dart            |         43 |          0 |         11 |         54 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\features\calender_page\bloc\calender_state.dart                | Dart            |         33 |          0 |         18 |         51 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\features\calender_page\calender_page.dart                      | Dart            |        299 |         10 |         17 |        326 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\features\main_page\main_page.dart                              | Dart            |         50 |          0 |          7 |         57 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\features\settings_page\settings_page.dart                      | Dart            |         18 |          0 |          3 |         21 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\features\statistics_page\statistics_page.dart                  | Dart            |         18 |          0 |          4 |         22 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\main.dart                                                      | Dart            |         21 |          1 |          4 |         26 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\utils\constants.dart                                           | Dart            |         23 |          0 |          1 |         24 |
+| d:\Projects\my_projects\Flutter_projects\task_count\lib\utils\helpers.dart                                             | Dart            |         35 |          2 |          4 |         41 |
+| d:\Projects\my_projects\Flutter_projects\task_count\linux\flutter\generated_plugin_registrant.cc                       | C++             |          3 |          4 |          5 |         12 |
+| d:\Projects\my_projects\Flutter_projects\task_count\linux\flutter\generated_plugin_registrant.h                        | C++             |          5 |          5 |          6 |         16 |
+| d:\Projects\my_projects\Flutter_projects\task_count\linux\flutter\generated_plugins.cmake                              | CMake           |         18 |          0 |          6 |         24 |
+| d:\Projects\my_projects\Flutter_projects\task_count\linux\main.cc                                                      | C++             |          5 |          0 |          2 |          7 |
+| d:\Projects\my_projects\Flutter_projects\task_count\linux\my_application.cc                                            | C++             |         74 |         11 |         20 |        105 |
+| d:\Projects\my_projects\Flutter_projects\task_count\linux\my_application.h                                             | C++             |          7 |          7 |          5 |         19 |
+| d:\Projects\my_projects\Flutter_projects\task_count\macos\Flutter\GeneratedPluginRegistrant.swift                      | Swift           |          6 |          3 |          4 |         13 |
+| d:\Projects\my_projects\Flutter_projects\task_count\macos\RunnerTests\RunnerTests.swift                                | Swift           |          7 |          2 |          4 |         13 |
+| d:\Projects\my_projects\Flutter_projects\task_count\macos\Runner\AppDelegate.swift                                     | Swift           |          8 |          0 |          2 |         10 |
+| d:\Projects\my_projects\Flutter_projects\task_count\macos\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json      | JSON            |         68 |          0 |          1 |         69 |
+| d:\Projects\my_projects\Flutter_projects\task_count\macos\Runner\Base.lproj\MainMenu.xib                               | XML             |        343 |          0 |          1 |        344 |
+| d:\Projects\my_projects\Flutter_projects\task_count\macos\Runner\MainFlutterWindow.swift                               | Swift           |         12 |          0 |          4 |         16 |
+| d:\Projects\my_projects\Flutter_projects\task_count\pubspec.yaml                                                       | YAML            |         22 |         11 |          7 |         40 |
+| d:\Projects\my_projects\Flutter_projects\task_count\test\widget_test.dart                                              | Dart            |         14 |         10 |          7 |         31 |
+| d:\Projects\my_projects\Flutter_projects\task_count\web\index.html                                                     | HTML            |         38 |         16 |          6 |         60 |
+| d:\Projects\my_projects\Flutter_projects\task_count\web\manifest.json                                                  | JSON            |         35 |          0 |          1 |         36 |
+| d:\Projects\my_projects\Flutter_projects\task_count\windows\flutter\generated_plugin_registrant.cc                     | C++             |          3 |          4 |          5 |         12 |
+| d:\Projects\my_projects\Flutter_projects\task_count\windows\flutter\generated_plugin_registrant.h                      | C++             |          5 |          5 |          6 |         16 |
+| d:\Projects\my_projects\Flutter_projects\task_count\windows\flutter\generated_plugins.cmake                            | CMake           |         18 |          0 |          6 |         24 |
+| d:\Projects\my_projects\Flutter_projects\task_count\windows\runner\flutter_window.cpp                                  | C++             |         49 |          7 |         16 |         72 |
+| d:\Projects\my_projects\Flutter_projects\task_count\windows\runner\flutter_window.h                                    | C++             |         20 |          5 |          9 |         34 |
+| d:\Projects\my_projects\Flutter_projects\task_count\windows\runner\main.cpp                                            | C++             |         30 |          4 |         10 |         44 |
+| d:\Projects\my_projects\Flutter_projects\task_count\windows\runner\resource.h                                          | C++             |          9 |          6 |          2 |         17 |
+| d:\Projects\my_projects\Flutter_projects\task_count\windows\runner\utils.cpp                                           | C++             |         54 |          2 |         10 |         66 |
+| d:\Projects\my_projects\Flutter_projects\task_count\windows\runner\utils.h                                             | C++             |          8 |          6 |          6 |         20 |
+| d:\Projects\my_projects\Flutter_projects\task_count\windows\runner\win32_window.cpp                                    | C++             |        210 |         24 |         55 |        289 |
+| d:\Projects\my_projects\Flutter_projects\task_count\windows\runner\win32_window.h                                      | C++             |         48 |         31 |         24 |        103 |
+| Total                                                                                                                  |                 |      2,591 |        257 |        404 |      3,252 |
++------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
