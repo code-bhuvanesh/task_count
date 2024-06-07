@@ -6,9 +6,11 @@ import 'package:task_count/features/calender_page/add_task_bottom_sheet.dart';
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_count/features/calender_page/bloc/calender_bloc.dart';
+import 'dart:math';
 
 import '../../data/models/custom_date.dart';
 import '../../utils/constants.dart';
+import 'add_note_bottom_sheet.dart';
 
 class CalenderPage extends StatefulWidget {
   const CalenderPage({super.key});
@@ -45,101 +47,153 @@ class _CalenderPageState extends State<CalenderPage> {
   Widget build(BuildContext context) {
     print("MediaQuery.of(context) : ${MediaQuery.of(context).padding.top}");
     return BlocListener<CalenderBloc, CalenderState>(
-      listener: (context, state) {
-        setState(() {
-          if (state is TasksList) {
-            setState(() {
-              taskList = state.tasklist;
-            });
-            context.read<CalenderBloc>().add(
-                  GetAllDates(
-                    taskname: taskList[taskNumber],
-                    month: currentMonth,
-                    year: currentYear,
-                  ),
-                );
-          }
-          if (state is AllDates) {
+      listener: (context, state) async {
+        if (state is TasksList) {
+          setState(() {
+            taskList = state.tasklist;
+          });
+          context.read<CalenderBloc>().add(
+                GetAllDates(
+                  taskname: taskList[taskNumber],
+                  month: currentMonth,
+                  year: currentYear,
+                ),
+              );
+        }
+        if (state is AllDates) {
+          setState(() {
             datesDetails = state.dates;
             taskCount = 0;
             datesDetails.forEach((key, value) {
               if (value) taskCount++;
             });
-          } else if (state is CheckMarkAdded) {
-            setState(() {
-              datesDetails.addAll({state.date: true});
-              taskCount++;
-            });
-          } else if (state is CheckMarkRemoved) {
-            setState(() {
-              datesDetails.addAll({state.date: false});
-              taskCount--;
-            });
+          });
+        } else if (state is CheckMarkAdded) {
+          setState(() {
+            datesDetails.addAll({state.date: true});
+            taskCount++;
+          });
+        } else if (state is CheckMarkRemoved) {
+          setState(() {
+            datesDetails.addAll({state.date: false});
+            taskCount--;
+          });
+        } else if (state is NoteState) {
+          var topPadding = MediaQuery.of(context).padding.top;
+          var oldNote = state.task == null ? "" : state.task!.note;
+          var notesController = TextEditingController(
+            text: oldNote,
+          );
+          await bottomSheet(
+            childBuilder: (controller, height) => BlocProvider(
+              create: (context) => CalenderBloc(),
+              child: AddNoteSheet(
+                scrollController: controller,
+                sheetHeight: height,
+                taskname: taskList[taskNumber],
+                date: state.date,
+                topPadding: topPadding,
+                notesController: notesController,
+              ),
+            ),
+          );
+          print("notes : ${notesController.text}");
+          if (mounted && notesController.text != oldNote) {
+            context.read<CalenderBloc>().add(
+                  AddNote(
+                    taskName: taskList[taskNumber],
+                    date: state.date,
+                    note: notesController.text,
+                  ),
+                );
           }
-        });
+        }
       },
       child: Scaffold(
         body: SafeArea(
           child: Container(
-            color: const Color.fromARGB(255, 230, 230, 230),
+            color: backgroundColor,
             child: Column(
               children: [
-                !bottomSheetVisible
-                    ? Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              customIconButton(Icons.arrow_left, next: false),
-                              GestureDetector(
-                                onTap: () {
-                                  bottomSheet(
-                                    childBuilder: (controller, height) =>
-                                        BlocProvider(
-                                      create: (context) => CalenderBloc(),
-                                      child: AddTaskSheet(
-                                        scrollController: controller,
-                                        sheetHeight: height,
-                                        topPadding:
-                                            MediaQuery.of(context).padding.top,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Text(
-                                  taskList[taskNumber],
-                                  style: const TextStyle(
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        customIconButton(Icons.arrow_left, next: false),
+                        GestureDetector(
+                          onTap: () async {
+                            await bottomSheet(
+                              childBuilder: (controller, height) =>
+                                  BlocProvider(
+                                create: (context) => CalenderBloc(),
+                                child: AddTaskSheet(
+                                  scrollController: controller,
+                                  sheetHeight: height,
+                                  topPadding:
+                                      MediaQuery.of(context).padding.top,
                                 ),
                               ),
-                              customIconButton(Icons.arrow_right, next: true),
-                            ],
+                            );
+                            if (mounted) {
+                              context.read<CalenderBloc>().add(
+                                    GetTasksList(),
+                                  );
+                            }
+                          },
+                          child: Text(
+                            taskList[taskNumber],
+                            style: const TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                        ],
-                      )
-                    : const SizedBox.shrink(),
+                        ),
+                        customIconButton(Icons.arrow_right, next: true),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                ),
                 GestureDetector(
                   onVerticalDragEnd: (position) {
                     setState(() {
-                      if (position.velocity.pixelsPerSecond.dy < -10) {
+                      print(
+                          "speed :  ${position.velocity.pixelsPerSecond.direction}");
+                      if (position.velocity.pixelsPerSecond.direction < 0) {
                         currentMonth++;
                         if (currentMonth > 12) {
                           currentMonth = 1;
                           currentYear++;
                         }
-                      } else if (position.velocity.pixelsPerSecond.dy > 10 &&
-                          currentMonth > 0) {
+                      } else if (position.velocity.pixelsPerSecond.direction >
+                          0) {
                         currentMonth--;
                         if (currentMonth <= 0) {
                           currentMonth = 12;
                           currentYear--;
                         }
                       }
+                      // var horizontalDrag =
+                      //     position.velocity.pixelsPerSecond.dx.abs() > 5;
+                      // if (position.velocity.pixelsPerSecond.dy < -200 &&
+                      //     !horizontalDrag) {
+                      //   currentMonth++;
+                      //   if (currentMonth > 12) {
+                      //     currentMonth = 1;
+                      //     currentYear++;
+                      //   }
+                      // } else if (position.velocity.pixelsPerSecond.dy > 200 &&
+                      //     !horizontalDrag &&
+                      //     currentMonth > 0) {
+                      //   currentMonth--;
+                      //   if (currentMonth <= 0) {
+                      //     currentMonth = 12;
+                      //     currentYear--;
+                      //   }
+                      // }
                     });
                     context.read<CalenderBloc>().add(
                           GetAllDates(
@@ -179,60 +233,46 @@ class _CalenderPageState extends State<CalenderPage> {
         initHeight: 0.7,
         maxHeight: 1,
         anchors: [0, 0.7, 1],
-        bottomSheetColor: const Color.fromARGB(0, 255, 255, 255),
-        // isModal: true,
-
+        bottomSheetColor: Colors.transparent,
         barrierColor: Colors.transparent,
-        // bottomSheetBorderRadius: BorderRadius.circular(50),
         builder: (bloccontext, controller, height) {
           print("d $height");
-          // return BlocProvider(
-          //   create: (context) => CalenderBloc(),
-          //   child: AddTaskSheet(
-          //     scrollController: controller,
-          //     sheetHeight: height,
-          //     topPadding: MediaQuery.of(context).padding.top,
-          //   ),
-          // );
           return childBuilder(controller, height);
         });
-    if (mounted) context.read<CalenderBloc>().add(GetTasksList());
-    // setState(() {
-    //   bottomSheetVisible = false;
-    // });
   }
 
   Widget dateWidget(CustomDate date) {
     double w = MediaQuery.of(context).size.width;
-    // print(datesDetails[date] ?? false);
     return GestureDetector(
-      onTap: () async {
-        print(date);
-        HapticFeedback.vibrate();
-
-        //  bottomSheet(date);
-        if (!datesDetails[date]!) {
-          context.read<CalenderBloc>().add(
-                AddCheckMark(
-                  date: date,
-                  taskname: taskList[taskNumber],
-                ),
-              );
-        } else {
-          context.read<CalenderBloc>().add(
-                RemoveCheckMark(
-                  date: date,
-                  taskname: taskList[taskNumber],
-                ),
-              );
-        }
-      },
-      onLongPress: () {
-        print("long press");
-        bottomSheet(
-          childBuilder: (controller, height) => Container(),
-        );
-      },
+      onTap: date.date != null
+          ? () async {
+              print(date);
+              HapticFeedback.vibrate();
+              if (!datesDetails[date]!) {
+                context.read<CalenderBloc>().add(
+                      AddCheckMark(
+                        date: date,
+                        taskname: taskList[taskNumber],
+                      ),
+                    );
+              } else {
+                context.read<CalenderBloc>().add(
+                      RemoveCheckMark(
+                        date: date,
+                        taskname: taskList[taskNumber],
+                      ),
+                    );
+              }
+            }
+          : null,
+      onLongPress: date.date != null
+          ? () async {
+              print("long press");
+              HapticFeedback.mediumImpact();
+              context.read<CalenderBloc>().add(
+                  GetNote(taskName: taskList[taskNumber], date: date.date!));
+            }
+          : null,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
@@ -285,19 +325,26 @@ class _CalenderPageState extends State<CalenderPage> {
             if (next) {
               if (taskNumber < taskList.length - 1) {
                 taskNumber++;
+                context.read<CalenderBloc>().add(
+                      GetAllDates(
+                        taskname: taskList[taskNumber],
+                        month: currentMonth,
+                        year: currentYear,
+                      ),
+                    );
               }
             } else {
               if (taskNumber > 0) {
                 taskNumber--;
+                context.read<CalenderBloc>().add(
+                      GetAllDates(
+                        taskname: taskList[taskNumber],
+                        month: currentMonth,
+                        year: currentYear,
+                      ),
+                    );
               }
             }
-            context.read<CalenderBloc>().add(
-                  GetAllDates(
-                    taskname: taskList[taskNumber],
-                    month: currentMonth,
-                    year: currentYear,
-                  ),
-                );
           });
         },
         icon: Icon(
@@ -339,7 +386,7 @@ class _CalenderPageState extends State<CalenderPage> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: days
                   .map(
                     (e) => Text(e.substring(0, 3).toUpperCase()),
@@ -354,7 +401,7 @@ class _CalenderPageState extends State<CalenderPage> {
             crossAxisSpacing: 3,
             mainAxisSpacing: 5,
             // childAspectRatio: 0.7,
-            childAspectRatio: height / 1200,
+            childAspectRatio: height / 1100,
             children: datesDetails.keys
                 .map(
                   (date) => dateWidget(date),
@@ -363,7 +410,7 @@ class _CalenderPageState extends State<CalenderPage> {
           ),
         ]),
         const SizedBox(
-          height: 30,
+          height: 20,
         ),
         nextMonthWidget()
       ],

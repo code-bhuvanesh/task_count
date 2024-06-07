@@ -44,12 +44,22 @@ class TaskNameUpdated extends CalenderState {
   final String newtaskname;
 
   TaskNameUpdated({required this.newtaskname});
-
 }
 
 class TaskExists extends CalenderState {
   final String taskname;
 
   TaskExists({required this.taskname});
+}
 
+class NoteAdded extends CalenderState {}
+
+class NoteState extends CalenderState {
+  final Task? task;
+  final DateTime date;
+
+  NoteState({
+    required this.task,
+    required this.date,
+  });
 }

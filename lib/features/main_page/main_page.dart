@@ -31,7 +31,7 @@ class _MainPageState extends State<MainPage> {
       body: pages[index],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
-        onTap: (i) {
+        onTap: (i) { 
           setState(() {
             index = i;
           });

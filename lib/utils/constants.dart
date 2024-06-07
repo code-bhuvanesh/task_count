@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 var months = [
   'January',
   'February',
@@ -21,3 +23,5 @@ var days = [
   'Friday',
   'Saturday',
 ];
+
+const backgroundColor = Color.fromARGB(255, 230, 230, 230);

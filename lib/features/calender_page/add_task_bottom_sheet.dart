@@ -59,19 +59,24 @@ class _AddTaskSheetState extends State<AddTaskSheet> {
       child: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(radiusSize),
-            gradient: const LinearGradient(
-              colors: [Colors.transparent, Color.fromARGB(40, 0, 0, 0)],
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
+            boxShadow: const [
+              BoxShadow(
+                blurRadius: 7.0,
+                offset: Offset(3.5, 0),
+              ),
+            ],
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(radiusSize),
+              topRight: Radius.circular(radiusSize),
             ),
           ),
           height: double.infinity,
           child: Card(
             color: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                radiusSize,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(radiusSize),
+                topRight: Radius.circular(radiusSize),
               ),
             ),
             elevation: 10,
@@ -142,58 +147,52 @@ class _AddTaskSheetState extends State<AddTaskSheet> {
   }
 
   Widget taskWidget(String taskName) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 35),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  taskName,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  textAlign: TextAlign.start,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    taskDialog(
-                      context,
-                      updateTask: true,
-                      taskName: taskName,
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: const Icon(Icons.draw),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+    return Card(
+      margin: const EdgeInsets.all(5),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              taskName,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w400,
+              ),
+              textAlign: TextAlign.start,
             ),
-          ),
-          const Divider()
-        ],
+            GestureDetector(
+              onTap: () {
+                taskDialog(
+                  context,
+                  updateTask: true,
+                  taskName: taskName,
+                );
+              },
+              child: Row(
+                children: [
+                  Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                    child: const Icon(Icons.draw),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                    child: const Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

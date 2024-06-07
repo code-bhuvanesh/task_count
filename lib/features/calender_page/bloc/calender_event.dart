@@ -51,3 +51,25 @@ class UpdateTaskName extends CalenderEvent {
     required this.newTaskName,
   });
 }
+
+class AddNote extends CalenderEvent {
+  final String taskName;
+  final DateTime date;
+  final String note;
+
+  AddNote({
+    required this.taskName,
+    required this.date,
+    required this.note,
+  });
+}
+
+class GetNote extends CalenderEvent {
+  final String taskName;
+  final DateTime date;
+
+  GetNote({
+    required this.taskName,
+    required this.date,
+  });
+}

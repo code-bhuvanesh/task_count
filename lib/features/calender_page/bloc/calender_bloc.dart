@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:task_count/data/models/custom_date.dart';
+import 'package:task_count/data/models/task.dart';
 import 'package:task_count/utils/helpers.dart';
 import 'package:flutter/services.dart';
 
@@ -22,6 +23,8 @@ class CalenderBloc extends Bloc<CalenderEvent, CalenderState> {
     on<GetTasksList>(onGetTaskList);
     on<AddNewTask>(onAddNewTask);
     on<UpdateTaskName>(onUpdateTaskName);
+    on<AddNote>(onAddNotes);
+    on<GetNote>(onGetNote);
   }
 
   FutureOr<void> onGetCurrentDate(
@@ -43,12 +46,14 @@ class CalenderBloc extends Bloc<CalenderEvent, CalenderState> {
         {e: false},
       ),
     );
-    var data = await TaskRepo.querryAll(
+    var data = await TaskRepo.querryMonth(
       event.taskname,
       month: event.month,
       year: event.year,
     );
-    allDates.addAll(data);
+    data.forEach((element) {
+      allDates[element.date] = element.isChecked;
+    });
     emit(AllDates(dates: allDates));
   }
 
@@ -107,5 +112,22 @@ class CalenderBloc extends Bloc<CalenderEvent, CalenderState> {
     );
     emit(TaskNameUpdated(newtaskname: event.newTaskName));
     //add(GetTasksList());
+  }
+
+  FutureOr<void> onAddNotes(
+    AddNote event,
+    Emitter<CalenderState> emit,
+  ) async {
+    await TaskRepo.addNotes(event.taskName, event.date, event.note);
+    emit(NoteAdded());
+  }
+
+  FutureOr<void> onGetNote(
+    GetNote event,
+    Emitter<CalenderState> emit,
+  ) async {
+    var task = await TaskRepo.querry(event.taskName, event.date);
+    print("note task : $task");
+    emit(NoteState(task: task, date: event.date));
   }
 }

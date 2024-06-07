@@ -1,0 +1,17 @@
+"filename", "language", "Dart", "XML", "comment", "blank", "total"
+"d:\Projects\my_projects\Flutter_projects\task_count\android\app\src\main\AndroidManifest.xml", "XML", 0, 1, 0, 0, 1
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\data\models\notes.dart", "Dart", 6, 0, 0, 2, 8
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\data\models\task.dart", "Dart", 11, 0, 0, 2, 13
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\data\repository\task_repo.dart", "Dart", 88, 0, 13, 10, 111
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\features\calender_page\add_note_bottom_sheet.dart", "Dart", 358, 0, 2, 13, 373
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\features\calender_page\add_task_bottom_sheet.dart", "Dart", 38, 0, 0, 1, 39
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\features\calender_page\bloc\calender_bloc.dart", "Dart", 33, 0, 2, 4, 39
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\features\calender_page\bloc\calender_event.dart", "Dart", 18, 0, 0, 4, 22
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\features\calender_page\bloc\calender_state.dart", "Dart", 12, 0, 0, 3, 15
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\features\calender_page\calender_page.dart", "Dart", 127, 0, -6, 0, 121
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\features\statistics_page\graph_widget.dart", "Dart", 143, 0, 20, 17, 180
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\features\statistics_page\statistics_page.dart", "Dart", 127, 0, 19, 5, 151
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\main.dart", "Dart", 4, 0, 0, 0, 4
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\utils\constants.dart", "Dart", 2, 0, 0, 2, 4
+"d:\Projects\my_projects\Flutter_projects\task_count\lib\utils\helpers.dart", "Dart", 6, 0, 0, 2, 8
+"Total", "-", 973, 1, 50, 65, 1089

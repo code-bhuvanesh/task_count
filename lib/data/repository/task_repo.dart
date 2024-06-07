@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:intl/intl.dart';
 import 'package:task_count/data/models/custom_date.dart';
+import 'package:task_count/data/models/task.dart';
 
 import '../../utils/helpers.dart';
 
@@ -10,7 +11,7 @@ class TaskRepo {
   static const String _allnotes = "allnotes";
   static Future<Database> open() async {
     if (db != null) return db!;
-    var path = "${await getDatabasesPath()}taskslist4.db";
+    var path = "${await getDatabasesPath()}taskslist5.db";
     print("db path = $path");
     return await openDatabase(
       path,
@@ -91,18 +92,29 @@ class TaskRepo {
     var db = await open();
     try {
       var tableName = await getTableName(taskName);
-      await db.insert(
-        tableName,
-        {
-          "date": _dateToString(date),
-          "isChecked": 1,
-        },
-      );
+      if (await querry(taskName, date) == null) {
+        await db.insert(
+          tableName,
+          {
+            "date": _dateToString(date),
+            "isChecked": 1,
+          },
+        );
+      } else {
+        await db.update(
+          tableName,
+          {
+            "isChecked": 1,
+          },
+          where: "date LIKE ?",
+          whereArgs: ['${formatDate(date)}%'],
+        );
+      }
     } on Exception catch (_) {
       print("cannot insert same date");
     }
 
-    await querryAll(taskName, db: db);
+    await querryMonth(taskName, db: db);
   }
 
   static Future removeCheck(String taskName, DateTime date,
@@ -116,7 +128,7 @@ class TaskRepo {
       whereArgs: [_dateToString(date)],
     );
     print("no of rows affected: $i");
-    await querryAll(taskName, db: db);
+    await querryMonth(taskName, db: db);
   }
 
   static Future addNotes(String taskName, DateTime date, String note) async {
@@ -124,37 +136,54 @@ class TaskRepo {
     var db = await open();
     try {
       var tableName = await getTableName(taskName);
-      if (await querry(taskName, date) == null) {
+      var data = await querry(taskName, date);
+      if (data == null) {
         await db.insert(
           tableName,
           {
             "date": _dateToString(date),
             "isChecked": 1,
-            "note" : "",
+            "note": note,
           },
         );
-      }
-      else{
-         await db.update(
-        _alltasks,
-        {
-          "note": note,
-        },
-        where: "date LIKE ?",
-        whereArgs: ['${ formatDate(date)}%'],
-      );
+      } else {
+        await db.update(
+          tableName,
+          {
+            "note": note,
+          },
+          where: "date LIKE ?",
+          whereArgs: [(formatDate(date))],
+        );
       }
     } on Exception catch (_) {
       print("cannot insert same date");
     }
 
-    await querryAll(taskName, db: db);
+    await querryMonth(taskName, db: db);
   }
 
-  static Future<Map<String, dynamic>?> querry(
-      String taskName, DateTime date) async {
+  // static Future<Map<String, dynamic>?> querry(
+  //     String taskName, DateTime date) async {
+  //   db = await open();
+
+  //   var formatted = formatDate(date);
+  //   var tableName = await getTableName(taskName);
+  //   var data = await db!.rawQuery(
+  //     "Select * from $tableName where date LIKE ?",
+  //     ['$formatted%'],
+  //   );
+  //   print("Database : \n $data");
+
+  //   return data.isNotEmpty ? data[0] : null;
+  // }
+
+  static Future<Task?> querry(
+    String taskName,
+    DateTime date,
+  ) async {
     db = await open();
- 
+
     var formatted = formatDate(date);
     var tableName = await getTableName(taskName);
     var data = await db!.rawQuery(
@@ -163,10 +192,10 @@ class TaskRepo {
     );
     print("Database : \n $data");
 
-    return data.isNotEmpty ? data[0] : null;
+    return data.isNotEmpty ? Task.fromJson(data[0]) : null;
   }
 
-  static Future<Map<CustomDate, bool>> querryAll(
+  static Future<List<Task>> querryMonth(
     String taskName, {
     int? month,
     int? year,
@@ -179,15 +208,14 @@ class TaskRepo {
       formattedDate = '$year-$formattedMonth';
     }
     var tableName = await getTableName(taskName);
-    Map<CustomDate, bool> dates = {};
+    List<Task> taskList = [];
     var data = await db.rawQuery(
         "Select * from $tableName where date LIKE ?", ['$formattedDate%']);
     print("Database : \n $data");
     data.forEach((e) {
-      var d = _stringToDate(e["date"] as String);
-      dates.addAll({CustomDate(date: d): (e["isChecked"] == 1)});
+      taskList.add(Task.fromJson(e));
     });
 
-    return dates;
+    return taskList;
   }
 }
